@@ -5,7 +5,7 @@ import pydeck as pdk
 #df = pd.read_excel("tokyo_charge_p2.xlsx")
 
 
-uploaded_file = st.file_uploader("シフト希望Excelファイルをアップロードしてください", type=["xlsx"])
+uploaded_file = st.file_uploader("Excelファイルをアップロードしてください", type=["xlsx"])
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
     st.write("アップロードされたデータ:")
