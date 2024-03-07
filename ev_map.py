@@ -90,7 +90,8 @@ if uploaded_file is not None:
         "ＳＡ/ＰＡ": [128, 0, 128],       
         "小売店舗": [255, 165, 0],       # 淡いオレンジ
         "ゴルフ場": [0, 128, 0],       # 明るい緑
-        "コンビニエンスストア": [30, 144, 255]  # 明るい青
+        "コンビニエンスストア": [30, 144, 255],  # 明るい青
+        "観光施設": [173, 255, 47]  # 明るい青
     }
     # サイドバー設定
     # 施設カテゴリの選択
@@ -98,13 +99,13 @@ if uploaded_file is not None:
     selected_categories = st.sidebar.multiselect('設置先施設名カテゴリを選択', categories, default=categories)
 
     # 「各充電器出力(kw)」でNaNでないもののみ表示するチェックボックス
-    kw_check = st.sidebar.checkbox('調査ずみ(稼働率は調査できてないっぽい')
+    #kw_check = st.sidebar.checkbox('調査ずみ(稼働率は調査できてないっぽい')
 
     # データフィルタリング
     filtered_df = df[df['施設カテゴリー'].isin(selected_categories)]
 
-    if kw_check:
-        filtered_df = filtered_df[filtered_df['各充電器出力(kw)'].notna()]
+    #if kw_check:
+    #    filtered_df = filtered_df[filtered_df['各充電器出力(kw)'].notna()]
 
     # 施設カテゴリーごとの数と色を表示
     st.write("### 施設カテゴリーごとの数")
@@ -114,8 +115,8 @@ if uploaded_file is not None:
         st.sidebar.markdown(f"<span style='color:{color}'>●</span> {category}: {count}", unsafe_allow_html=True)
 
     # 「各充電器出力(kw)」がNaNでないデータの数を表示
-    kw_count = df[df['各充電器出力(kw)'].notna()].shape[0]
-    st.write(f"###): {kw_count}")
+    #kw_count = df[df['各充電器出力(kw)'].notna()].shape[0]
+    #st.write(f"###): {kw_count}")
 
     # 各カテゴリーに対応する色の列を追加
     filtered_df['color'] = filtered_df['施設カテゴリー'].apply(lambda x: category_colors.get(x, [200, 200, 200]))
